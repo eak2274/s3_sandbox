@@ -5,8 +5,12 @@ from config import ACCESS_KEY, SECRET_KEY, ENDPOINT_URL, REGION, BUCKET_NAME
 from botocore.client import Config
 
 import os
-os.environ["AWS_REQUEST_CHECKSUM_CALCULATION"] = "WHEN_REQUIRED"
-os.environ["AWS_RESPONSE_CHECKSUM_VALIDATION"] = "WHEN_REQUIRED"
+# 1. Uncomment when working with very large files (>1GB)
+# os.environ["AWS_REQUEST_CHECKSUM_CALCULATION"] = "ALWAYS"
+# 2. Uncomment when troubleshooting data consistency issues
+# os.environ["AWS_RESPONSE_CHECKSUM_VALIDATION"] = "ALWAYS"
+# 3. Uncomment when troubleshooting network connectivity issues
+# os.environ["AWS_REQUEST_CHECKSUM_CALCULATION"] = "NONE"
 
 # Создание клиента S3
 s3_client = boto3.client(
